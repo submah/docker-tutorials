@@ -38,5 +38,18 @@ Docker Engine uses the following namespaces on Linux:
   * **MNT** namespace for managing filesystem mount points.
   * **UTS** namespace for isolating kernel and version identifiers
 
+#### Cgroups
+Docker also makes use of kernel control groups for resource allocation and isolation. A cgroup limits an application to a specific set of resources. Control groups allow Docker Engine to share available hardware resources to containers and optionally enforce limits and constraints.
+
+Docker Engine uses the following cgroups:
+ * **Memory cgroup** for managing accounting, limits and notifications.
+ * **HugeTBL cgroup** for accounting usage of huge pages by process group.
+ * **CPU group** for managing user / system CPU time and usage.
+ * **CPUSet cgroup** for binding a group to specific CPU. Useful for real time applications and NUMA systems with localized memory per CPU.
+ * **BlkIO cgroup** for measuring & limiting amount of blckIO by group.
+ * **net_cls and net_prio cgroup** for tagging the traffic control.
+ * **Devices cgroup** for reading / writing access devices.
+ * **Freezer cgroup** for freezing a group. Useful for cluster batch scheduling, process migration and debugging without affecting prtrace.  
+
 
 
