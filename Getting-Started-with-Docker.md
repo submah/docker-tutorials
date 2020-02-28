@@ -8,7 +8,7 @@ In this module we are going to learn about
 
   * Introduction to Docker
   * Docker Architecture
-  * Anatomy of a Container: Namespaces, Cgroups and OverlayFS
+  * Anatomy of a Container: Namespaces, Cgroups and Union filesystems(OverlayFS)
   * Understanding Virtualization
   * Virtualization vs Container
 
@@ -50,6 +50,9 @@ Docker Engine uses the following cgroups:
  * **net_cls and net_prio cgroup** for tagging the traffic control.
  * **Devices cgroup** for reading / writing access devices.
  * **Freezer cgroup** for freezing a group. Useful for cluster batch scheduling, process migration and debugging without affecting prtrace.  
+
+
+#### Union filesystems(OverlayFS)
 
 
 
