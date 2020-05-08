@@ -53,6 +53,11 @@ Docker Engine uses the following cgroups:
 
 
 #### Union filesystems(OverlayFS)
+Union filesystems are an idea that has been around for decades, and they are the least container specific. They’ve had other uses in a pre-container world, including Live-CDs, configuration management and creating default files. 
+
+A union filesystem has branches or layers that correspond to each underlying filesystem. The union filesystem is a virtual filesystem that manages changes to the merged view and spreads them around the layers as appropriate.
+
+
 
 
 
