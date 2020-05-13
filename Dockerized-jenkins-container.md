@@ -66,7 +66,7 @@ docker build -t custom-jenkins .  # You can change the tag name of the jenkins I
 docker run -it --rm -p 8080:8080 f21558459467   # Provide your custom-jenkins-image-id
 
 ```
-### To Make you jenkins data persistent  create a volume and mount to jenkins home
+### To Make your jenkins data persistent  create a volume and mount to jenkins home
 ```
 docker run --rm -it -p 8080:8080 -p 50000:50000 -v jenkins-vol:/var/jenkins_home 1ce8a7d1aafc
 
