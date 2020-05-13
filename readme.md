@@ -7,3 +7,4 @@
   4. [Docker Networking]
   5. [Container Operations]
   6. [Docker Compose]
+  7. [Dockerized jenkins container](https://github.com/submah/docker-tutorials/blob/master/Dockerized-jenkins-container.md)
