@@ -54,3 +54,15 @@ jenkins.save()
 import jenkins.model.*
 Jenkins.instance.setNumExecutors(10)
 ```
+
+### To Build Images from the Dockerfile
+```shell
+docker build -t custom-jenkins .  # You can change the tag name of the jenkins Image
+
+```
+
+### To run the jenkins container and access from outside
+```shell
+docker run -it --rm -p 8080:8080 f21558459467   # Provide your custom-jenkins-image-id
+
+```
