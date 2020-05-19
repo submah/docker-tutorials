@@ -52,5 +52,5 @@ docker run -it alpine sh
 
 [OUTPUT]
 
-<img src="images/docker-run-with-flag-output.JPG1">
+<img src="images/docker-run-with-flag-output.JPG">
 
