@@ -7,3 +7,12 @@ In this session we are going to learn few Container Operation commands
   * Port Mapping for Docker  
   * Limiting Rrsoruces Memory and CPU
   * Prioritizing CPU Utilization
+
+
+## Launching first container
+```bash
+docker run alpine:3.4 uptime
+
+```
+
+<img src="images/docker-run-output.JPEG">
