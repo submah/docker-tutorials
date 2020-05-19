@@ -50,6 +50,7 @@ You can run a container with Interactive mode by using -i -t flags at the run ti
 docker run -it alpine sh
 ```
 
+
 [OUTPUT]
 
 <img src="images/docker-run-with-flag-output.JPG">
