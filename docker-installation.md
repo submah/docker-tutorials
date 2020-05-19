@@ -62,3 +62,24 @@ dpkg -i /path/to/package.deb
 ```diff
 - The scripts require root or sudo privileges to run. Therefore, you should carefully examine and audit the scripts before running them.
 ```
+```vim
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+<command output not available>
+
+usermod -aG docker your-user
+```
+
+### Access Docker as a non-root user
+1. Create Docker group
+```vim
+sudo groupadd docker
+```
+2.  Add your user to the docker group.
+```vim
+sudo usermod -aG docker $USER
+```
+3. you can also run the below command to activate the changes to groups:
+```vim
+newgrp docker 
+```
