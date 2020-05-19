@@ -83,3 +83,10 @@ sudo usermod -aG docker $USER
 ```vim
 newgrp docker 
 ```
+
+### Configure Docker to start on boot
+Most current Linux distributions (RHEL, CentOS, Fedora, Ubuntu 16.04 and higher) use systemd to manage which services start when the system boots.
+```bash
+sudo systemctl enable docker
+sudo chkconfig docker on
+```
