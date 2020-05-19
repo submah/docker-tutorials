@@ -38,8 +38,27 @@ add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(
 ```
 
 ### INSTALL DOCKER ENGINE
-Update you apt package index and install the latest version of Docker Engine and containerd
+1. Update you apt package index and install the latest version of Docker Engine and containerd
 ```vim
 apt-get update
 apt-get install docker-ce docker-ce-cli containerd.io
+```
+2. To install a specific version of Docker Engine
+```vim
+apt-cache madison docker-ce
+pt-get install docker-ce=<VERSION_STRING> docker-ce-cli=<VERSION_STRING> containerd.io
+```
+
+### Install from a package
+If you are not using repository approach, you can download the **.deb** file from the docker engine version that you want to download.
+
+1. Go to [https://download.docker.com/linux/ubuntu/dists/](https://download.docker.com/linux/ubuntu/dists/), choose your Ubuntu version, then browse to pool/stable/, choose amd64, armhf, arm64, ppc64el, or s390x, and download the .deb file for the Docker Engine version you want to install.
+
+2. Once you download the package you can execute the below command to install
+```vim
+dpkg -i /path/to/package.deb
+```
+### Install using the convenience script
+```diff
+- The scripts require root or sudo privileges to run. Therefore, you should carefully examine and audit the scripts before running them.
 ```
