@@ -15,4 +15,4 @@ docker run alpine:3.4 uptime
 
 ```
 
-<img src="images/docker-run-output.JPEG">
+<img src="images/docker-run-output.JPG">
