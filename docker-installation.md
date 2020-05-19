@@ -21,18 +21,25 @@ In testing and development environments, some users choose to use automated conv
 ### Install using the Docker repository approach
 1. Update the apt packages and allow apt to use repository over HTTPS
 
-```shell
-# apt-get update
-# apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+```vim
+apt-get update
+apt-get install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
 ```
 
 2. Addin Docker Official GPG key
-```shell
-# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-# apt-key fingerprint 0EBFCD88
+```vim
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+apt-key fingerprint 0EBFCD88
 ```
 
 3. Below command will allow you to create a stable repository for Docker
-```shell
-# add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+```vim
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+```
+
+### INSTALL DOCKER ENGINE
+Update you apt package index and install the latest version of Docker Engine and containerd
+```vim
+apt-get update
+apt-get install docker-ce docker-ce-cli containerd.io
 ```
