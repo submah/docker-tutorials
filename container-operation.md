@@ -43,6 +43,7 @@ docker ps -a
 You can run a container with Interactive mode by using -i -t flags at the run time 
 #### Meaning 
 -i --> Interactive
+
 -t --> tty
 
 ```bash
