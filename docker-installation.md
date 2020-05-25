@@ -182,7 +182,5 @@ Commands:
   wait        Block until one or more containers stop, then print their exit codes
 
 Run 'docker COMMAND --help' for more information on a command.
-```
-
-## Introduction to Docker namespaces
+``
 
