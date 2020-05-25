@@ -12,11 +12,14 @@ In this session we are goin to learn about:
 * Building Images using DockerFile.
 * Pull and Push Images From/To Docker Hub.
 
-### Introduction to Docker Images
+### Introduction to Docker Images and Layer
+
 A Docker image is a file, which consist of multiple layers that is used to execute code in a Docker container. 
 An image is essentially built from the instructions for a complete and executable version of an application, which relies on the host OS kernel. When the Docker user runs an image, it can create one or more containers.
 
 A Docker image includes the elements needed to run an application as a container -- such as code, config files, environment variables, libraries and run time. If the image is deployed to a Docker environment it can then be executed as a Docker container. The docker run command will create a container from a given image.
+
+<img src="images/docker_image_layer.jpg">
 
 ### Building a Docker Image with a Dockerfile
 - Create a file loop.sh and append the below lines
