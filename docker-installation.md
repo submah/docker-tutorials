@@ -183,3 +183,6 @@ Commands:
 
 Run 'docker COMMAND --help' for more information on a command.
 ```
+
+## Introduction to Docker namespaces
+
