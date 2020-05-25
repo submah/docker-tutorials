@@ -61,3 +61,15 @@ COPY loop.sh .
 ENTRYPOINT ["/bin/bash", "loop.sh"]
 ```
 
+### Some docker image commands
+- **docker image build:**       Builds an image from a Dockerfile.
+- **docker image inspect:**     Displays information on one or more images.
+- **docker image load:**        Loads an image from a tar archive or streams for receiving or reading input (STDIN).
+- **docker image prune:**       Removes unused images.
+- **docker image pull:**        Pulls an image or a repository from a registry.
+- **docker image push:**        Pushes an image or a repository to a registry.
+- **docker image rm:**          Removes one or more images.
+- **docker image save:**        Saves one or more images to a tar archive (streamed to STDOUT by default).
+- **docker image tag:**         Creates a tag TARGET_IMAGE that refers to SOURCE_IMAGE.
+
+
