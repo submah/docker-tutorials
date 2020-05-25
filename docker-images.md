@@ -51,8 +51,9 @@ echo -e "not a valid agrument\n"
 echo -e "example: loop.sh loop"
 fi
 ```
+- Create a file i.e Dockerfile and append below code
 
-```docker
+```Dockerfile
 FROM alpine
 MAINTAINER Subrat Kumar
 RUN apk update && apk add bash
