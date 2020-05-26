@@ -108,8 +108,6 @@ Once deployed, your containers are limited in how they can save and contain data
     - **-v**_____________says what follows is to be the volume.
     - **ubuntu**_______is the image to be used for the container.
 
-
-    <img src="images/creating-host-data-volume.jpg">
-
+    <br><img src="images/creating-host-data-volume.jpg"></br>
 
 
