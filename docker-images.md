@@ -101,12 +101,12 @@ Once deployed, your containers are limited in how they can save and contain data
     ```
     The above command breaks down like this:
 
-    - docker run is the main command that says we’re going to run a command in a new container.
-    - -dit is d for detached mode, and it ensures that bash or sh can be allocated to a pseudo terminal.
-    - -P publishes the containers ports to the host.
-    - –name says what follows is the name of the new container.
-    - -v says what follows is to be the volume.
-    - ubuntu is the image to be used for the container.
+    - **docker run**   is the main command that says we’re going to run a command in a new container.
+    - **-dit**         is d for detached mode, and it ensures that bash or sh can be allocated to a pseudo terminal.
+    - **-P**           publishes the containers ports to the host.
+    - **–name**        says what follows is the name of the new container.
+    - **-v**           says what follows is to be the volume.
+    - **ubuntu**       is the image to be used for the container.
 
 
 
