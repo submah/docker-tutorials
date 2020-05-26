@@ -116,7 +116,14 @@ Once deployed, your containers are limited in how they can save and contain data
     ```
     docker attach ID #Replace ID with correct docker ID
     ```
-   
+    Once you attach to the container go to **/data** and create a file.  
+
     <br><img src="images/testing-the-volume.jpg"></br> 
+
+    Now exit from the container and navigate to the directory which you creatd on the docker host i.e. **~/container-data**. 
+    Check is ther any file exist or not?
+    
+    <br><img src="images/testing-the-volume-1.jpg"></br> 
+    
 
 
