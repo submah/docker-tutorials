@@ -95,9 +95,9 @@ Once deployed, your containers are limited in how they can save and contain data
     based on the official Ubuntu image, that contains a directory called /data. To deploy such a container that attaches 
     the internal /data directory to a volume within the host directory ~/container-data, you would issue the command
 
-    ```
+    
     docker run -dit -P --name ubuntu-test -v ~/container-data:/data ubuntu
-    ```
+
 
     The above command breaks down like this:
 
