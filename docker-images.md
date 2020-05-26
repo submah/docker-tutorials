@@ -91,7 +91,9 @@ Once deployed, your containers are limited in how they can save and contain data
     ```
 **Note: You must ensure the newly-created directory is housed in a location the Docker user can access (with read-write privilege).**
 
-    Once you’ve created that directory, you’re ready to mount a volume inside. Let’s say you’re going to deploy a container, based on the official Ubuntu image, that contains a directory called /data. To deploy such a container that attaches the internal /data directory to a volume within the host directory ~/container-data, you would issue the command:
+    Once you’ve created that directory, you’re ready to mount a volume inside. Let’s say you’re going to deploy a container, 
+    based on the official Ubuntu image, that contains a directory called /data. To deploy such a container that attaches 
+    the internal /data directory to a volume within the host directory ~/container-data, you would issue the command
 
     ```
     docker run -dit -P --name ubuntu-test -v ~/container-data:/data ubuntu
@@ -99,12 +101,12 @@ Once deployed, your containers are limited in how they can save and contain data
 
     The above command breaks down like this:
 
-        - **docker** run is the main command that says we’re going to run a command in a new container.
-        - **-dit** is d for detached mode, and it ensures that bash or sh can be allocated to a pseudo terminal.
-        - **-P** publishes the containers ports to the host.
-        - **–name** says what follows is the name of the new container.
-        - **-v** says what follows is to be the volume.
-        - **ubuntu** is the image to be used for the container.
+        - docker run is the main command that says we’re going to run a command in a new container.
+        - -dit is d for detached mode, and it ensures that bash or sh can be allocated to a pseudo terminal.
+        - -P publishes the containers ports to the host.
+        - –name says what follows is the name of the new container.
+        - -v says what follows is to be the volume.
+        - ubuntu is the image to be used for the container.
 
 
 
