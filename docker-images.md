@@ -22,7 +22,7 @@ A Docker image includes the elements needed to run an application as a container
 <img src="images/docker_image_layer.jpg">
 
 ### Building a Docker Image with a Dockerfile
-- Create a file loop.sh and append the below lines
+- Create a file loop.sh and append the below lines.
 
 ```bash
 #!/bin/bash
@@ -74,5 +74,24 @@ ENTRYPOINT ["/bin/bash", "loop.sh"]
 - **docker image rm:**          Removes one or more images.
 - **docker image save:**        Saves one or more images to a tar archive (streamed to STDOUT by default).
 - **docker image tag:**         Creates a tag TARGET_IMAGE that refers to SOURCE_IMAGE.
+
+
+### Sharing Data in Your Docker Host with Containers
+
+Once deployed, your containers are limited in how they can save and contain data. The limitation lies within the container filesystem. Docker containers make use of the Union File System (UFS), which works with a series of read-only layers that includes a final read-write layer on top. This system functions perfectly when a container doesn’t need to save data. But when you need to deploy a service that requires the ability to save data (such as an application that works with a database), what do you do?
+
+- ### Welcome to Volumes
+
+    A Docker volume is a directory (or collection of files) that lives on the host file system and is not a part of the container’s UFS.    It is within these volumes that containers are capable of saving data. With the docker volume command, you can easily manage volumes   to expand your containers well beyond their basic capability
+
+- ### Creating the Host Data Volume
+    The first step is to create a new directory to house the volume. To do this, open a terminal window and issue the command:
+    ```
+    mkdir ~/container-data
+    ```
+**Note: You must ensure the newly-created directory is housed in a location the Docker user can access (with read-write privilege).**
+
+
+
 
 
