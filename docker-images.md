@@ -89,7 +89,7 @@ Once deployed, your containers are limited in how they can save and contain data
     ```
     mkdir ~/container-data
     ```
-**Note:You must ensure the newly-created directory is housed in a location the Docker user can access (with read-write privilege).**    
+    **Note:You must ensure the newly-created directory is housed in a location the Docker user can access (with read-write privilege).**    
 
     Once you’ve created that directory, you’re ready to mount a volume inside. Let’s say you’re going to deploy 
     a container, based on the official Ubuntu image, that contains a directory called /data. 
