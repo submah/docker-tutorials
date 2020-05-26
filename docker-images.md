@@ -109,7 +109,7 @@ Once deployed, your containers are limited in how they can save and contain data
     - **ubuntu**_______is the image to be used for the container.
 
 
-    <img src="images/creating-the-host-data-volume-jpg">
+    <img src="images/creating-host-data-volume-jpg">
 
 
 
