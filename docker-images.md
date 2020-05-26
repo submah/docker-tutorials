@@ -110,4 +110,38 @@ Once deployed, your containers are limited in how they can save and contain data
 
     <br><img src="images/creating-host-data-volume.jpg"></br>
 
+- ### Testing the Volume
+    Let’s test this volume. If you’ve forgotten the ID of the container, issue the **docker ps** command and copy first 4 charatcters from the containder ID
+
+    ```
+    docker attach ID #Replace ID with correct docker ID
+    ```
+    ```
+    root@demo-instance:~# docker ps
+    CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS               NAMES
+    f44f43ee9f42        ubuntu              "/bin/bash"         About a minute ago   Up About a minute                       ubuntu-test
+    root@demo-instance:~# 
+    root@demo-instance:~# 
+    root@demo-instance:~# docker attach ID
+    Error: No such container: ID
+    root@demo-instance:~# 
+    root@demo-instance:~# 
+    root@demo-instance:~# 
+    root@demo-instance:~# docker ps
+    CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+    f44f43ee9f42        ubuntu              "/bin/bash"         18 minutes ago      Up 18 minutes                           ubuntu-test
+    root@demo-instance:~# 
+    root@demo-instance:~# 
+    root@demo-instance:~# docker attach f44f
+    root@f44f43ee9f42:/# 
+    root@f44f43ee9f42:/# cd data/
+    root@f44f43ee9f42:/data# 
+    root@f44f43ee9f42:/data# 
+    root@f44f43ee9f42:/data# touch file-created-in-container
+    root@f44f43ee9f42:/data# 
+    root@f44f43ee9f42:/data# ls
+    file-created-in-container
+    ```
+    <br><img src="images/testing-the-volume.jpg"></br> 
+
 
