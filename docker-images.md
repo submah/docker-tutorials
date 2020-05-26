@@ -109,5 +109,7 @@ Once deployed, your containers are limited in how they can save and contain data
     - **ubuntu**_______is the image to be used for the container.
 
 
+    <img src="images/c4logo.png">
+
 
 
