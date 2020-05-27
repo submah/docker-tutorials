@@ -72,3 +72,9 @@ Well, we can set up the registry in two different ways:
     volumes:
       registry:
     ```
+
+    ####Check the container status
+    ```
+    docker-compose ps
+    ```
+    
