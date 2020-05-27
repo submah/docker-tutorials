@@ -7,7 +7,7 @@
 - Pushing images to a Local Docker Registry
 - Use Cases for Local Docker Registry
 
-- ### Difference Between Docker Repository and Docker Registry
+### Difference Between Docker Repository and Docker Registry
     Docker registry is an enterprise grade service for storing Images.
     We can use one of the existing and well-established cloud registries like Docker Hub, Quay, Google Container Registry, Amazon Elastic Container Registry or any other. We can also make our own registry and host it locally. We’re going to learn how to do that later on in this post. 
 
