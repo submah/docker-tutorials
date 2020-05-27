@@ -206,7 +206,7 @@ In general, Docker containers are ephemeral. By default, any data created inside
     
     ls
     ```
-    <br><img src="images/copying-data-from-container"></br>
+    <br><img src="images/copying-data-from-container.png"></br>
 
     
 
