@@ -83,7 +83,35 @@ Well, we can set up the registry in two different ways:
     Common Name (e.g. server FQDN or YOUR name) []:my-registry
     Email Address []:admin@c4clouds.com
     ```
-    docker run -d -p 50000:5000 --restart always --name my-registry registry:latest
+
+    ```
+    docker run -d -p 50000:5000 --restart always --name my-registry -v /etc/certs:/etc/certs -e REGISTRY_HTTP_TLS_CERTIFICATE=/etc/certs/ca.crt -e REGISTRY_HTTP_TLS_KEY=/etc/certs/ca.key registry
+    ```
+
+    Once the Docker image is ready on registry-client. Before starting, you will need to copy the ca.crt certificate from the registry-server to registry-client.
+
+    **Note: In our case both Client/Server on same vm**
+
+    ```bash
+    mkdir -p /etc/docker/certs.d/my-registry:5000
+    cp /etc/certs/ca.crt /usr/local/share/ca-certificates/
+    docker cp my-registry:/etc/certs/ca.crt /etc/docker/certs.d/my-registry\:5000/
+    ```
+
+    Now, restart docker service with the following command:
+    ```
+    service docker restart
+    ```
+
+    Next, upload the docker image to private registry server using the following command:
+    ```
+    docker push my-registry:50000/c4clouds/alpine:v2
+    ```
+    [output]
+
+    <img src="images/private-registry.jpg">
+
+Go to the registry-client instance and run the following command:
     
     Now we can access the repository with **host-vm-ip:50000/v2/_catalog**
 
