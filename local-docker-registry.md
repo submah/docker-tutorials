@@ -108,30 +108,28 @@ Well, we can set up the registry in two different ways:
     service docker restart
     ```
 
-    ### Pushing Images to a Local Docker Registry
-    So now we have our own local registry. Let’s push some images to it.
-    
-    ```
-    docker push my-registry:50000/c4clouds/alpine:v2
-    ```
-    [output]
+### Pushing Images to a Local Docker Registry
+So now we have our own local registry. Let’s push some images to it.
 
-    <img src="images/private-registry.jpg">
+```
+docker push my-registry:50000/c4clouds/alpine:v2
+```
+[output]
+<img src="images/private-registry.jpg">
+Go to the registry-client instance and run the following command:
 
-    Go to the registry-client instance and run the following command:
-    
-    Now we can access the repository with **host-vm-ip:50000/v2/_catalog**
+Now we can access the repository with **host-vm-ip:50000/v2/_catalog**
 
-    ### output
-    ```json
-    {
-        repositories: [
-            "c4clouds/alpine"
-            ]
-    }
-    ```
+### output
+```json
+{
+    repositories: [
+        "c4clouds/alpine"
+        ]
+}
+```
     
-    ### Using Docker Compose
+- ### Using Docker Compose
 
     Create a file i.e. **docker-compose.yml** and paste the below code
 
@@ -151,13 +149,11 @@ Well, we can set up the registry in two different ways:
       registry:
     ```
 
-    ### Use Cases for Local Docker Registry
-    Now that you know pretty much everything you need to run a local registry, you might wonder: “But why should I use a local registry when I have all those nice options available?”.
-
-    There are a few reasons for that:
-
-    - Total control of our registry and repositories
-    - We need to set up a local network and to easily distribute images throughout it, to save the bandwidth
-    - We have a closed network without internet access
-    - Setting up a local CI build server that uses that registry
-    - We don’t want to pay some crazy plans to cloud providers to host our repositories
+### Use Cases for Local Docker Registry
+Now that you know pretty much everything you need to run a local registry, you might wonder: “But why should I use a localregistry when I have all those nice options available?”.
+There are a few reasons for that:
+- Total control of our registry and repositories
+- We need to set up a local network and to easily distribute images throughout it, to save the bandwidth
+- We have a closed network without internet access
+- Setting up a local CI build server that uses that registry
+- We don’t want to pay some crazy plans to cloud providers to host our repositories
