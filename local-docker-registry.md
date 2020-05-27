@@ -46,3 +46,9 @@ Well, we can set up the registry in two different ways:
     ```
     docker run -d -p 50000:5000 --restart always --name my-registry registry:latest
     ```` 
+    Now we can access the repository with **host-vm-ip:50000/v2/_catalog**
+
+    ### output
+    {
+        repositories: [ ]
+    }
