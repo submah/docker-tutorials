@@ -141,6 +141,24 @@ In general, Docker containers are ephemeral. By default, any data created inside
     docker inspect www --format="{{json .Mounts}}"
     ```
     <br><img src="images/inspect-volume-mount.jpg"></br>
+    
+    Now connect to the www container and create a index.html file.
+
+    ```
+    docker exec -it www bash
+
+    echo "Hello World" > /usr/local/apache2/htdocs/index.html
+
+    exit
+    ```
+
+    Now find out the IP address of the www container with the following command:
+    
+    ```
+    docker inspect www --format="{{json .NetworkSettings.Networks.bridge.IPAddress}}"
+    ```
+    <br><img src="images/inspect-ip-address.jpg"></br>
+    
 
 
 
