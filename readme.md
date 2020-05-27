@@ -8,3 +8,4 @@
   5. [Container Operations](https://github.com/submah/docker-tutorials/blob/master/container-operation.md)
   6. [Docker Compose]
   7. [Dockerized jenkins container](https://github.com/submah/docker-tutorials/blob/master/Dockerized-jenkins-container.md)
+  8. [Docker Hub vs Creating a Local Docker Registry](https://github.com/submah/docker-tutorials/blob/master/local-docker-registry.md)
