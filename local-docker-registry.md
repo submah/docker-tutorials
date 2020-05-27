@@ -85,7 +85,12 @@ Well, we can set up the registry in two different ways:
     ```
 
     ```
-    docker run -d -p 50000:5000 --restart always --name my-registry -v /etc/certs:/etc/certs -e REGISTRY_HTTP_TLS_CERTIFICATE=/etc/certs/ca.crt -e REGISTRY_HTTP_TLS_KEY=/etc/certs/ca.key registry
+    docker run -d -p 50000:5000\
+    --restart always\
+    --name my-registry\
+    -v /etc/certs:/etc/certs\
+    -e REGISTRY_HTTP_TLS_CERTIFICATE=/etc/certs/ca.crt\
+    -e REGISTRY_HTTP_TLS_KEY=/etc/certs/ca.key registry
     ```
 
     Once the Docker image is ready on registry-client. Before starting, you will need to copy the ca.crt certificate from the registry-server to registry-client.
