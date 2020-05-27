@@ -4,12 +4,11 @@
 In this session we are goin to learn about:
 
 * Introduction to Docker Images
-* Building a Docker Image with a Dockerfile
 * Sharing Data in Your Docker Host with Containers
 * Sharing Data Between Containers
 * Copying Data to and from Containers
 * Creatoing Docker Hub Account.
-* Building Images using DockerFile.
+* Building a Docker Image with a Dockerfile
 * Pull and Push Images From/To Docker Hub.
 
 ### Introduction to Docker Images and Layer
@@ -20,61 +19,6 @@ An image is essentially built from the instructions for a complete and executabl
 A Docker image includes the elements needed to run an application as a container -- such as code, config files, environment variables, libraries and run time. If the image is deployed to a Docker environment it can then be executed as a Docker container. The docker run command will create a container from a given image.
 
 <img src="images/docker_image_layer.jpg">
-
-### Building a Docker Image with a Dockerfile
-- Create a file loop.sh and append the below lines.
-
-```bash
-#!/bin/bash
-
-loop(){
-count=1
-#a=3
-a=$1
-while [ "$count" -le $a ]; do
-
-echo -e "Running endless loop: $count\n"
-echo $cunt
-sleep 1
-((count++))
-#clear
-done
-}
-
-
-###
-# Main body of script starts here
-###
-if [ "$1" = loop ];
-then
-shift
-loop $1
-else
-echo -e "not a valid agrument\n"
-echo -e "example: loop.sh loop"
-fi
-```
-- Create a file i.e Dockerfile and append below code
-
-```Dockerfile
-FROM alpine
-MAINTAINER Subrat Kumar
-RUN apk update && apk add bash
-COPY loop.sh .
-ENTRYPOINT ["/bin/bash", "loop.sh"]
-```
-
-### Some docker image commands
-- **docker image build:**       Builds an image from a Dockerfile.
-- **docker image inspect:**     Displays information on one or more images.
-- **docker image load:**        Loads an image from a tar archive or streams for receiving or reading input (STDIN).
-- **docker image prune:**       Removes unused images.
-- **docker image pull:**        Pulls an image or a repository from a registry.
-- **docker image push:**        Pushes an image or a repository to a registry.
-- **docker image rm:**          Removes one or more images.
-- **docker image save:**        Saves one or more images to a tar archive (streamed to STDOUT by default).
-- **docker image tag:**         Creates a tag TARGET_IMAGE that refers to SOURCE_IMAGE.
-
 
 ### Sharing Data in Your Docker Host with Containers
 
@@ -208,5 +152,75 @@ In general, Docker containers are ephemeral. By default, any data created inside
     ```
     <br><img src="images/copying-data-from-container.png"></br>
 
-    
+### Creatoing Docker Hub Account.
+    Refer Demo.
+
+### Building a Docker Image with a Dockerfile
+- Create a file loop.sh and append the below lines.
+
+```bash
+#!/bin/bash
+
+loop(){
+count=1
+#a=3
+a=$1
+while [ "$count" -le $a ]; do
+
+echo -e "Running endless loop: $count\n"
+echo $cunt
+sleep 1
+((count++))
+#clear
+done
+}
+
+
+###
+# Main body of script starts here
+###
+if [ "$1" = loop ];
+then
+shift
+loop $1
+else
+echo -e "not a valid agrument\n"
+echo -e "example: loop.sh loop"
+fi
+```
+- Create a file i.e Dockerfile and append below code
+
+```Dockerfile
+FROM alpine
+MAINTAINER Subrat Kumar
+RUN apk update && apk add bash
+COPY loop.sh .
+ENTRYPOINT ["/bin/bash", "loop.sh"]
+```
+
+### Some docker image commands
+- **docker image build:**       Builds an image from a Dockerfile.
+- **docker image inspect:**     Displays information on one or more images.
+- **docker image load:**        Loads an image from a tar archive or streams for receiving or reading input (STDIN).
+- **docker image prune:**       Removes unused images.
+- **docker image pull:**        Pulls an image or a repository from a registry.
+- **docker image push:**        Pushes an image or a repository to a registry.
+- **docker image rm:**          Removes one or more images.
+- **docker image save:**        Saves one or more images to a tar archive (streamed to STDOUT by default).
+- **docker image tag:**         Creates a tag TARGET_IMAGE that refers to SOURCE_IMAGE.
+
+### Pull and Push Images From/To Docker Hub
+- ### From docker hub.
+```
+#To Pull Image from Docker hub.
+docker pull alpine
+
+#Note before pushing to docker hub you must tag you docker image properly.
+
+#To tag docker image
+docker tag <Image ID> <username>/<image_name:tag_name>  # Replace Image ID, Username, ImageName, Tag
+
+#To Push to Docker hub
+docker push  <username>/<image_name:tag_name>  # Note: Without tag refer to latest version
+```
 
