@@ -55,7 +55,7 @@ Well, we can set up the registry in two different ways:
     }
     ```
     ### Using Docker Compose
-    Create a file i.e. **docker-compose-registry.yml** and paste the below code
+    Create a file i.e. **docker-compose.yml** and paste the below code
 
     ```dockerfile
     version: '3.0'
