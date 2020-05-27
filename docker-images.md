@@ -142,7 +142,7 @@ In general, Docker containers are ephemeral. By default, any data created inside
     ```
     <br><img src="images/inspect-volume-mount1.jpg"></br>
     
-    Now connect to the www container and create a index.html file.
+    Now connect to the www container and create a **index.html** file.
 
     ```
     docker exec -it www bash
@@ -152,14 +152,27 @@ In general, Docker containers are ephemeral. By default, any data created inside
     exit
     ```
 
-    Now find out the IP address of the www container with the following command:
+    Now find out the IP address of the www container with the below command and accss the apache2 service:
     
     ```
     docker inspect www --format="{{json .NetworkSettings.Networks.bridge.IPAddress}}"
+
+    curl $(docker inspect www --format="{{json .NetworkSettings.Networks.bridge.IPAddress}}" | awk -F'"' '$0=$2')
     ```
     <br><img src="images/inspect-ip-address.jpg"></br>
-    
 
 
+    Now let's create another container **www2** and attach the **share-data** volume to it the same way and see if the changes to the share-data volume (mounted in /usr/local/apache2/htdocs in www and www2 container) from one container is visible to the other container.
 
+    To create a new container www2, and attach the share-data volume to it, run the below command:
+
+    ```
+    docker run -d -it --name=www2 --mount source=share-data,destination=/usr/local/apache2/htdocs httpd:2.4
+
+    #Now let’s find the IP address of the www2 container with the following command:
+
+    docker inspect www2 --format="{{json .NetworkSettings.Networks.bridge.IPAddress}}"
+
+    ```
+    <br><img src="images/inspect-ip-address-www2.jpg"></br>
 
