@@ -120,7 +120,9 @@ Well, we can set up the registry in two different ways:
     ### output
     ```json
     {
-        repositories: [ ]
+        repositories: [
+            "c4clouds/alpine"
+            ]
     }
     ```
     
