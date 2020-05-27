@@ -49,6 +49,26 @@ Well, we can set up the registry in two different ways:
     Now we can access the repository with **host-vm-ip:50000/v2/_catalog**
 
     ### output
+    ```
     {
         repositories: [ ]
     }
+    ```
+    ### Using Docker Compose
+    Create a file i.e. **docker-compose-registry.yml** and paste the below code
+
+    ```dockerfile
+    version: '3.0'
+ 
+    services:
+      my-registry:
+        image: registry:latest
+        container_name: my-registry
+        volumes:
+          - registry:/var/lib/registry
+        ports:
+          - "50000:5000"
+        restart: unless-stopped
+    volumes:
+      registry:
+    ```
