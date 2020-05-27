@@ -8,10 +8,9 @@
 - Use Cases for Local Docker Registry
 
 ### Difference Between Docker Repository and Docker Registry
-    Docker registry is an enterprise grade service for storing Images.
-    We can use one of the existing and well-established cloud registries like Docker Hub, Quay, Google Container Registry, Amazon Elastic Container Registry or any other. We can also make our own registry and host it locally. We’re going to learn how to do that later on in this post. 
+Docker registry is an enterprise grade service for storing Images. We can use one of the existing and well-established cloud registries like Docker Hub, Quay, Google Container Registry, Amazon Elastic Container Registry or any other. We can also make our own registry and host it locally. We’re going to learn how to do that later on in this post. 
 
-    Docker Repository is a collection of Docker images with the same name and different tags. For example, the repository we’ve used several times so far, mcr.microsoft.com/dotnet/core/aspnet repository, has many different images in it.
+Docker Repository is a collection of Docker images with the same name and different tags. For example, the repository we’ve used several times so far, mcr.microsoft.com/dotnet/core/aspnet repository, has many different images in it.
 
 - ### More About Docker Hub
     As we’ve mentioned, Docker Hub is just one of the registry providers. And a good one at that. We can find all sorts of images over there and push our own. We can create unlimited public repositories and one private repo free of charge. If you need more private repositories, you can choose one of the Docker Hub monthly plans.
