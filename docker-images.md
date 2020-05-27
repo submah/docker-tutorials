@@ -179,5 +179,22 @@ In general, Docker containers are ephemeral. By default, any data created inside
     Now navigate to the volume on which both the container are mounted to and update the **index.html** file.
 
     <br><img src="images/create-index-html-file.jpg"></br>
+
+### Copying Data to and from Containers
+- ### Copying Data to Container
+    In order to copy data to container execute the below command.
+    
+    ```
+    touch creatd-on-host-vm
+    
+    docker cp created-on-host-vm www:/tmp
+
+    docker exec -it www bash -c 'ls -lrth /tmp'
+    ```
+    <br><img src="images/copying-data-to-container.png"></br>
+
+
+- ### Copying Data from container
+
     
 
