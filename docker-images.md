@@ -176,3 +176,8 @@ In general, Docker containers are ephemeral. By default, any data created inside
     ```
     <br><img src="images/inspect-ip-address-www2.jpg"></br>
 
+    Now navigate to the volume on which both the container are mounted to and update the **index.html** file.
+
+    <br><img src="images/create-index-html-file.jpg"></br>
+    
+
