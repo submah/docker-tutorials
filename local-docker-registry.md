@@ -44,8 +44,47 @@ Well, we can set up the registry in two different ways:
     So if we want to set up the local registry we can type:
 
     ```
+    #To Install the necessary packages
+    apt-get install -y apt-transport-https software-properties-common ca-certificates curl -y
+
+    #Pull the Registry Docker Image
+    docker pull registry
+    ```
+
+    Once the registry image downloaded, you will need to generate a self-signed certificate for securing Docker Registry. Because, Docker node uses a secure connection over TLS to upload or download images to or from the private registry.
+
+    Go to the registry-server and run the following command to generate certificate:
+
+    ```bash
+    mkdir /etc/certs
+    cd /etc/certs
+    openssl req -newkey rsa:4096 -nodes -sha256 -keyout ca.key -x509 -days 365 -out ca.crt
+    ```
+
+    [Output]
+    ```
+    Generating a 4096 bit RSA private key
+    .........................++
+    .........................................++
+    writing new private key to 'ca.key'
+    -----
+    You are about to be asked to enter information that will be incorporated
+    into your certificate request.
+    What you are about to enter is what is called a Distinguished Name or a DN.
+    There are quite a few fields but you can leave some blank
+    For some fields there will be a default value,
+    If you enter '.', the field will be left blank.
+    -----
+    Country Name (2 letter code) [AU]:IN
+    State or Province Name (full name) [Some-State]:Karnataka
+    Locality Name (eg, city) []:Bangalore
+    Organization Name (eg, company) [Internet Widgits Pty Ltd]:c4clouds
+    Organizational Unit Name (eg, section) []:IT
+    Common Name (e.g. server FQDN or YOUR name) []:my-registry
+    Email Address []:admin@c4clouds.com
+    ```
     docker run -d -p 50000:5000 --restart always --name my-registry registry:latest
-    ```` 
+    
     Now we can access the repository with **host-vm-ip:50000/v2/_catalog**
 
     ### output
@@ -77,4 +116,8 @@ Well, we can set up the registry in two different ways:
     ```
     docker-compose ps
     ```
-    
+### Pushing Images to a Local Docker Registry
+So now we have our own local registry. Let’s push some images to it.
+
+```
+docker tag imageid my-registry:50000/c4clouds/alpine:v2
