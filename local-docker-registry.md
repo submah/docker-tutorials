@@ -103,7 +103,9 @@ Well, we can set up the registry in two different ways:
     service docker restart
     ```
 
-    Next, upload the docker image to private registry server using the following command:
+    ### Pushing Images to a Local Docker Registry
+    So now we have our own local registry. Let’s push some images to it.
+    
     ```
     docker push my-registry:50000/c4clouds/alpine:v2
     ```
@@ -111,17 +113,19 @@ Well, we can set up the registry in two different ways:
 
     <img src="images/private-registry.jpg">
 
-Go to the registry-client instance and run the following command:
+    Go to the registry-client instance and run the following command:
     
     Now we can access the repository with **host-vm-ip:50000/v2/_catalog**
 
     ### output
-    ```
+    ```json
     {
         repositories: [ ]
     }
     ```
+    
     ### Using Docker Compose
+
     Create a file i.e. **docker-compose.yml** and paste the below code
 
     ```dockerfile
@@ -139,13 +143,3 @@ Go to the registry-client instance and run the following command:
     volumes:
       registry:
     ```
-
-    ####Check the container status
-    ```
-    docker-compose ps
-    ```
-### Pushing Images to a Local Docker Registry
-So now we have our own local registry. Let’s push some images to it.
-
-```
-docker tag imageid my-registry:50000/c4clouds/alpine:v2
