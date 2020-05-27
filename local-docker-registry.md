@@ -150,3 +150,14 @@ Well, we can set up the registry in two different ways:
     volumes:
       registry:
     ```
+
+    ### Use Cases for Local Docker Registry
+    Now that you know pretty much everything you need to run a local registry, you might wonder: “But why should I use a local registry when I have all those nice options available?”.
+
+    There are a few reasons for that:
+
+    - Total control of our registry and repositories
+    - We need to set up a local network and to easily distribute images throughout it, to save the bandwidth
+    - We have a closed network without internet access
+    - Setting up a local CI build server that uses that registry
+    - We don’t want to pay some crazy plans to cloud providers to host our repositories
