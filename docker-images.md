@@ -124,6 +124,17 @@ Once deployed, your containers are limited in how they can save and contain data
     Check is ther any file exist or not?
     
     <br><img src="images/testing-the-volume-1.jpg"></br> 
+
+### Sharing Data Between Containers
+In general, Docker containers are ephemeral. By default, any data created inside the container is only available from within the container and only while the container is running. Docker volumes can be used to share files between a host system and the Docker container.
+
+- ### Adding Volumes to Containers and Sharing Volumes Between Containers:
+    Now we are going to create a simple Docker container from the **httpd:2.4** Docker image for running Apache 2 webserver. Then we are going to mount the **share-data** volume to /usr/local/apache2 /htdocs directory of that Docker container. We will give the container a name **www** just to easily manage it.
+
+    ```
+    docker run -d -it --name=www --mount source=data1,destination=/usr/local/apache2/htdocs httpd:2.4
+    ```
     
+
 
 
