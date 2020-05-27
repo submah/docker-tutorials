@@ -140,7 +140,7 @@ In general, Docker containers are ephemeral. By default, any data created inside
     ```
     docker inspect www --format="{{json .Mounts}}"
     ```
-    <br><img src="images/inspect-volume-mount.jpg"></br>
+    <br><img src="images/inspect-volume-mount1.jpg"></br>
     
     Now connect to the www container and create a index.html file.
 
