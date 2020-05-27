@@ -195,6 +195,18 @@ In general, Docker containers are ephemeral. By default, any data created inside
 
 
 - ### Copying Data from container
+    In order to copy data from container execute the below command.
+    
+    ```
+    docker exec -it www bash -c "touch /tmp/created-on-container"
+
+    docker exec -it www bash -c "ls /tmp/"
+
+    docker cp www:/tmp/created-on-container .
+    
+    ls
+    ```
+    <br><img src="images/copying-data-from-container"></br>
 
     
 
