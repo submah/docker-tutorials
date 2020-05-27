@@ -129,7 +129,7 @@ Now we can access the repository with **host-vm-ip:50000/v2/_catalog**
 }
 ```
     
-- ### Using Docker Compose
+### Using Docker Compose
 
     Create a file i.e. **docker-compose.yml** and paste the below code
 
