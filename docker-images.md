@@ -132,9 +132,16 @@ In general, Docker containers are ephemeral. By default, any data created inside
     Now we are going to create a simple Docker container from the **httpd:2.4** Docker image for running Apache 2 webserver. Then we are going to mount the **share-data** volume to /usr/local/apache2 /htdocs directory of that Docker container. We will give the container a name **www** just to easily manage it.
 
     ```
-    docker run -d -it --name=www --mount source=data1,destination=/usr/local/apache2/htdocs httpd:2.4
+    docker run -d -it --name=www --mount source=share-data,destination=/usr/local/apache2/htdocs httpd:2.4
     ```
-    
+    Now to check whether the share-data volume was mounted to the www container or not?  
+    run the following command:
+
+    ```
+    docker inspect www --format="{{json .Mounts}}"
+    ```
+    <br><img src="images/inspect-volume-mount.jpg"></br>
+
 
 
 
