@@ -136,5 +136,85 @@ docker network inspect bridge
     }
 ]
 ```
+Under the Containers key, each connected container is listed, along with information about its IP address (172.17.0.2 for alpine1 and 172.17.0.3 for alpine2).
+
+The containers are running in the background. Use the docker attach command to connect to alpine1.
+
+```
+docker attach alpine1
+```
+Use the **ip addr show** command to show the network interfaces for alpine1 as they look from within the container:
+
+```bash
+ip addr show
+```
+
+[Output]
+
+```
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+251: eth0@if252: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue state UP 
+    link/ether 02:42:ac:11:00:02 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+```
+Notice that the second interface has the IP address 172.17.0.2, which is the same address shown for alpine1 in the previous step.
+
+From within alpine1, make sure you can connect to the internet by pinging google.com. The -c 2 flag limits the command to two ping attempts.
+
+```
+ping -c 2 google.com
+
+```
+[Output]
+```
+PING google.com (172.217.212.102): 56 data bytes
+64 bytes from 172.217.212.102: seq=0 ttl=51 time=0.929 ms
+64 bytes from 172.217.212.102: seq=1 ttl=51 time=1.005 ms
+
+--- google.com ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 0.929/0.967/1.005 ms
+```
+
+Now try to ping the second container. First, ping it by its IP address, 172.17.0.3
+
+[Output]
+```
+PING 172.17.0.3 (172.17.0.3): 56 data bytes
+64 bytes from 172.17.0.3: seq=0 ttl=64 time=0.165 ms
+64 bytes from 172.17.0.3: seq=1 ttl=64 time=0.111 ms
+
+--- 172.17.0.3 ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 0.111/0.138/0.165 ms
+```
+This succeeds. Next, try pinging the alpine2 container by container name. This will fail.
+
+```
+ping -c 2 alpine2
+```
+
+[Output]
+
+```
+ping: bad address 'alpine2'
+```
+
+Detach from alpine1 without stopping it by using the detach sequence, CTRL + p CTRL + q.
+
+do the above steps for alpine2 container to check. substituting alpine1 for alpine2
+
+### Use user-defined bridge networks
+In this example, we again start two alpine containers, but attach them to a user-defined network called alpine-net which we have already created. These containers are not connected to the default bridge network at all. We then start a third alpine container which is connected to the bridge network but not connected to alpine-net, and a fourth alpine container which is connected to both networks.
+
+- 1. Create the alpine-net network. You do not need the --driver bridge flag since it’s the default, but this example shows how to specify it.
+
+```
+docker network create --driver bridge alpine-net
+``` 
 
 
