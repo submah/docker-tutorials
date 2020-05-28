@@ -160,20 +160,19 @@ htpasswd -Bc /root/registry-volume/registry.passwd example-user
 
 Now open the **docker-compose.yml** fil and remove the # mark for auth and execute below command:
 
-```json
+```diff
 docker-compose up -d 
 
 curl https://my-registry:50000:/v2/_catalog
 
-Output
+-[Output]
 
 {"errors":[{"code":"UNAUTHORIZED","message":"authentication required","detail":[{"Type":"registry","Class":"","Name":"catalog","Action":"*"}]}]}
 
-#Now with a valid username and passwod 
+#Now with a valid username and password 
 
 curl -u example-user:1234  https://my-registry:50000/v2/_catalog
-
-Output
+-[Output]
 {"repositories":["c4clouds/loop-with-number"]}
 ```
 
