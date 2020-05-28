@@ -149,7 +149,7 @@ Now we can access the repository with **host-vm-ip:50000/v2/_catalog**
         - /root/registry-volume:/certs
         #- /path/auth:/auth
     ```
-- **Note: Create a directory i.e /root/registry-volume and copy the created sesfsigned SSL ca.crt and ca.key files to it. Copy the ca.crt file to /usr/local/share/ca-certificates/ location then execute command update-ca-certificates**
+Note: Create a directory i.e **/root/registry-volume** and copy the created sesfsigned SSL **ca.crt** and **ca.key** files to it. Copy the **ca.crt** file to **/usr/local/share/ca-certificates/** location then execute command **update-ca-certificates**
        
 
 ### Use Cases for Local Docker Registry
