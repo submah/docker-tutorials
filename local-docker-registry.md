@@ -142,7 +142,7 @@ Now we can access the repository with **host-vm-ip:50000/v2/_catalog**
         REGISTRY_HTTP_TLS_CERTIFICATE: /certs/ca.crt
         REGISTRY_HTTP_TLS_KEY: /certs/ca.key
         #REGISTRY_AUTH: htpasswd
-        #REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
+        #REGISTRY_AUTH_HTPASSWD_PATH: /auth/registry.passwd
         #REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
       volumes:
         - /root/registry-volume:/var/lib/registry
@@ -150,7 +150,31 @@ Now we can access the repository with **host-vm-ip:50000/v2/_catalog**
         #- /path/auth:/auth
     ```
 Note: Create a directory i.e **/root/registry-volume** and copy the created sesfsigned SSL **ca.crt** and **ca.key** files to it. Copy the **ca.crt** file to **/usr/local/share/ca-certificates/** location then execute command **update-ca-certificates**
-       
+
+### Enable basic auth (username/password) for docker login
+In order to test the basic auth Create a file i.e. registry.passwd for example-user
+
+```
+htpasswd -Bc /root/registry-volume/registry.passwd example-user
+```
+
+Now open the **docker-compose.yml** fil and remove the # mark for auth and execute below command:
+
+```json
+docker-compose up -d 
+
+curl https://my-registry:50000:/v2/_catalog
+
+[OutPut]
+{"errors":[{"code":"UNAUTHORIZED","message":"authentication required","detail":[{"Type":"registry","Class":"","Name":"catalog","Action":"*"}]}]}
+
+#Now with a valid username and passwod 
+
+curl -u example-user:1234  https://my-registry:50000/v2/_catalog
+
+[OutPut]
+{"repositories":["c4clouds/loop-with-number"]}
+```
 
 ### Use Cases for Local Docker Registry
 Now that you know pretty much everything you need to run a local registry, you might wonder: “But why should I use a localregistry when I have all those nice options available?”.
