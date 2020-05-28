@@ -134,20 +134,23 @@ Now we can access the repository with **host-vm-ip:50000/v2/_catalog**
     Create a file i.e. **docker-compose.yml** and paste the below code
 
     ```dockerfile
-    version: '3.0'
- 
-    services:
-      my-registry:
-        image: registry:latest
-        container_name: my-registry
-        volumes:
-          - registry:/var/lib/registry
-        ports:
-          - "50000:5000"
-        restart: unless-stopped
-    volumes:
-      registry:
+    registry:
+      image: registry:2
+      ports:
+        - 50000:5000
+      environment:
+        REGISTRY_HTTP_TLS_CERTIFICATE: /certs/ca.crt
+        REGISTRY_HTTP_TLS_KEY: /certs/ca.key
+        #REGISTRY_AUTH: htpasswd
+        #REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
+        #REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
+      volumes:
+        - /root/registry-volume:/var/lib/registry
+        - /root/registry-volume:/certs
+        #- /path/auth:/auth
     ```
+- **Note: Create a directory i.e /root/registry-volume and copy the created sesfsigned SSL ca.crt and ca.key files to it. Copy the ca.crt file to /usr/local/share/ca-certificates/ location then execute command update-ca-certificates**
+       
 
 ### Use Cases for Local Docker Registry
 Now that you know pretty much everything you need to run a local registry, you might wonder: “But why should I use a localregistry when I have all those nice options available?”.
