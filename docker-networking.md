@@ -211,10 +211,16 @@ do the above steps for alpine2 container to check. substituting alpine1 for alpi
 ### Use user-defined bridge networks
 In this example, we again start two alpine containers, but attach them to a user-defined network called alpine-net which we have already created. These containers are not connected to the default bridge network at all. We then start a third alpine container which is connected to the bridge network but not connected to alpine-net, and a fourth alpine container which is connected to both networks.
 
-- 1. Create the alpine-net network. You do not need the --driver bridge flag since it’s the default, but this example shows how to specify it.
+1. Create the alpine-net network. You do not need the --driver bridge flag since it’s the default, but this example shows how to specify it.
 
 ```
 docker network create --driver bridge alpine-net
-``` 
+```
+2. List Docker’s networks:
+
+```
+docker network ls
+
+```
 
 
