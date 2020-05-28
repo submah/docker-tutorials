@@ -223,4 +223,335 @@ docker network ls
 
 ```
 
+Inspect the alpine-net network. This shows you its IP address and the fact that no containers are connected to it:
+
+```
+docker network inspect alpine-net
+```
+
+[Output]
+
+```json
+[
+    {
+        "Name": "alpine-net",
+        "Id": "277108d1cd45d13a5037935429e6d26e84070b067c7c599085e9b875cb5d2751",
+        "Created": "2020-05-28T16:28:49.008235503Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]
+```
+
+**Notice that this network’s gateway is 172.18.0.1, as opposed to the default bridge network, whose gateway is 172.17.0.1. The exact IP address may be different on your system.**
+
+3. Create your four containers. Notice the --network flags. You can only connect to one network during the docker run command, so you need to use docker network connect afterward to connect alpine4 to the bridge network as well.
+
+```
+docker run -dit --name alpine1 --network alpine-net alpine ash
+
+docker run -dit --name alpine2 --network alpine-net alpine ash
+
+docker run -dit --name alpine3 alpine ash
+
+docker run -dit --name alpine4 --network alpine-net alpine ash
+
+docker network connect bridge alpine4
+```
+
+Verify that all containers are running:
+
+```
+docker ps
+```
+
+[Output]
+
+```
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+1f1e4b819f32        alpine              "ash"               16 seconds ago      Up 15 seconds                           alpine4
+6138995a3550        alpine              "ash"               22 seconds ago      Up 21 seconds                           alpine3
+1b1b1ca34d15        alpine              "ash"               28 seconds ago      Up 26 seconds                           alpine2
+19573860f677        alpine              "ash"               37 seconds ago      Up 36 seconds                           alpine1
+```
+4. Inspect the bridge network and the alpine-net network again:
+
+```
+docker network inspect bridge
+```
+
+[Output]
+
+```json
+[
+    {
+        "Name": "bridge",
+        "Id": "7e036800a97c8150206d570d6b781c1f9e3e99392533f01dc411eff760a49cdc",
+        "Created": "2020-05-28T14:20:12.071483312Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.17.0.0/16",
+                    "Gateway": "172.17.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "1f1e4b819f3292a13d7056156174ed00c75fed2a3b24212f4bc3f1fb14b9c7da": {
+                "Name": "alpine4",
+                "EndpointID": "ea52463033c4de37300b42a6f0cd6eaf064e1445c6172fd611d344153d249520",
+                "MacAddress": "02:42:ac:11:00:03",
+                "IPv4Address": "172.17.0.3/16",
+                "IPv6Address": ""
+            },
+            "6138995a3550432c1fe05875075ed958937a198a71797b3c03d1dca304c08e39": {
+                "Name": "alpine3",
+                "EndpointID": "13e1e7d3776755d65f6308d7390aac322b41bf2844be060793e9e8c37f13864b",
+                "MacAddress": "02:42:ac:11:00:02",
+                "IPv4Address": "172.17.0.2/16",
+				"IPv6Address": ""
+            }
+        },
+        "Options": {
+            "com.docker.network.bridge.default_bridge": "true",
+            "com.docker.network.bridge.enable_icc": "true",
+            "com.docker.network.bridge.enable_ip_masquerade": "true",
+            "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+            "com.docker.network.bridge.name": "docker0",
+            "com.docker.network.driver.mtu": "1500"
+        },
+        "Labels": {}
+    }
+]
+```
+**Note: Containers alpine3 and alpine4 are connected to the bridge network.**
+
+```
+docker network inspect alpine-net
+```
+
+[Output]
+
+```json
+[
+    {
+        "Name": "alpine-net",
+        "Id": "277108d1cd45d13a5037935429e6d26e84070b067c7c599085e9b875cb5d2751",
+        "Created": "2020-05-28T16:28:49.008235503Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "19573860f677491c71263845fe1ac9cd280094117bac52c01ce1afeec4da4338": {
+                "Name": "alpine1",
+                "EndpointID": "d1075fa70d099fe646ad46eea7e35293d12244a98e63f3c84f45a0c59d150cd2",
+                "MacAddress": "02:42:ac:12:00:02",
+                "IPv4Address": "172.18.0.2/16",
+                "IPv6Address": ""
+            },
+            "1b1b1ca34d15c6ee880ca622ba7cb631d3c78446bf9922788b309d005b92ba8a": {
+                "Name": "alpine2",
+                "EndpointID": "7f4dd9c2347b5689728e4f7f1ee9c0de8ae58b4685e9e14baac1052dd313fdd9",
+                "MacAddress": "02:42:ac:12:00:03",
+				"IPv4Address": "172.18.0.3/16",
+                "IPv6Address": ""
+            },
+            "1f1e4b819f3292a13d7056156174ed00c75fed2a3b24212f4bc3f1fb14b9c7da": {
+                "Name": "alpine4",
+                "EndpointID": "98837b67f39f5b4b19cd6bbeb75f21d76a8b60d147e1a6ad23f3f846b0e30baf",
+                "MacAddress": "02:42:ac:12:00:04",
+                "IPv4Address": "172.18.0.4/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {},
+        "Labels": {}
+    }
+]
+```
+Containers alpine1, alpine2, and alpine4 are connected to the alpine-net network.
+
+5. On user-defined networks like alpine-net, containers can not only communicate by IP address, but can also resolve a container name to an IP address. This capability is called automatic service discovery. Let’s connect to alpine1 and test this out. alpine1 should be able to resolve alpine2 and alpine4 (and alpine1, itself) to IP addresses.
+
+```
+docker container attach alpine1
+
+ping -c 2 alpine2
+
+ping -c 2 alpine4
+
+ping -c 2 alpine1
+```
+[Output]
+```
+PING alpine2 (172.18.0.3): 56 data bytes
+64 bytes from 172.18.0.3: seq=0 ttl=64 time=0.302 ms
+64 bytes from 172.18.0.3: seq=1 ttl=64 time=0.097 ms
+
+--- alpine2 ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 0.097/0.199/0.302 ms
+```
+```
+PING alpine4 (172.18.0.4): 56 data bytes
+64 bytes from 172.18.0.4: seq=0 ttl=64 time=0.144 ms
+64 bytes from 172.18.0.4: seq=1 ttl=64 time=0.093 ms
+
+--- alpine4 ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 0.093/0.118/0.144 ms
+```
+
+```
+PING alpine1 (172.18.0.2): 56 data bytes
+64 bytes from 172.18.0.2: seq=0 ttl=64 time=0.053 ms
+64 bytes from 172.18.0.2: seq=1 ttl=64 time=0.070 ms
+
+--- alpine1 ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 0.053/0.061/0.070 ms
+```
+6. From alpine1, you should not be able to connect to alpine3 at all, since it is not on the alpine-net network.
+
+```
+ping -c 2 alpine3
+```
+
+[Output]
+```
+ping: bad address 'alpine3'
+```
+Not only that, but you can’t connect to alpine3 from alpine1 by its IP address either. Look back at the docker network inspect output for the bridge network and find alpine3’s IP address: 172.17.0.2 Try to ping it.
+
+```
+ping -c 2 172.17.0.2
+```
+[Output]
+
+```
+PING 172.17.0.2 (172.17.0.2): 56 data bytes
+
+--- 172.17.0.2 ping statistics ---
+2 packets transmitted, 0 packets received, 100% packet loss
+```
+
+7. Remember that alpine4 is connected to both the default bridge network and alpine-net. It should be able to reach all of the other containers. However, you will need to address alpine3 by its IP address. Attach to it and run the tests.
+
+```
+docker container attach alpine4
+
+ping -c 2 alpine1
+
+ping -c 2 alpine2
+
+ping -c 2 alpine3
+
+ping -c 2 172.17.0.2
+
+ping -c 2 alpine4
+```
+
+[Output]
+
+```
+# ping -c 2 alpine1
+
+PING alpine1 (172.18.0.2): 56 data bytes
+64 bytes from 172.18.0.2: seq=0 ttl=64 time=0.074 ms
+64 bytes from 172.18.0.2: seq=1 ttl=64 time=0.082 ms
+
+--- alpine1 ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 0.074/0.078/0.082 ms
+
+# ping -c 2 alpine2
+
+PING alpine2 (172.18.0.3): 56 data bytes
+64 bytes from 172.18.0.3: seq=0 ttl=64 time=0.075 ms
+64 bytes from 172.18.0.3: seq=1 ttl=64 time=0.080 ms
+
+--- alpine2 ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 0.075/0.077/0.080 ms
+
+# ping -c 2 alpine3
+ping: bad address 'alpine3'
+
+# ping -c 2 172.17.0.2
+
+PING 172.17.0.2 (172.17.0.2): 56 data bytes
+64 bytes from 172.17.0.2: seq=0 ttl=64 time=0.089 ms
+64 bytes from 172.17.0.2: seq=1 ttl=64 time=0.075 ms
+
+--- 172.17.0.2 ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 0.075/0.082/0.089 ms
+
+# ping -c 2 alpine4
+
+PING alpine4 (172.18.0.4): 56 data bytes
+64 bytes from 172.18.0.4: seq=0 ttl=64 time=0.033 ms
+64 bytes from 172.18.0.4: seq=1 ttl=64 time=0.064 ms
+
+--- alpine4 ping statistics ---
+2 packets transmitted, 2 packets received, 0% packet loss
+round-trip min/avg/max = 0.033/0.048/0.064 ms
+```
+
+
+
+
+
+
+
 
