@@ -25,7 +25,10 @@ docker run -itd --network=none ubunut   #No network will assign to container
 
   A container can reach to another with Internal IP address if required. To access the container outside world map the ports of the Containers to the Ports on the Docker host.
 
-  <img src="images/bridge-network.jpg"> 
+  <img src="images/bridge-network.jpg">
+
+- ### Host Network
+  or standalone containers, remove network isolation between the container and the Docker host, and use the host’s networking directly. host is only available for swarm services on Docker 17.06 and higher. See [use the host network](https://docs.docker.com/network/host/).   
 
 
 
