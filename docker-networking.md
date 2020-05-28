@@ -46,7 +46,95 @@ docker run --rm -d --network host --name my_httpd httpd
 ```
 Now, try to access the httpd service with port 80.
 
+### Networking with standalone containers
+This series of tutorials deals with networking for standalone Docker containers.
+This topic includes two different tutorials
 
+- Use the default **bridge** network demonstrates how to use the default bridge network that Docker sets up for you automatically. This    network is not the best choice for production systems.
 
+- Use **user-defined bridge** networks shows how to create and use your own custom bridge networks, to connect containers running on the same Docker host. This is recommended for standalone containers running in production.
+
+### Use the default bridge network
+In this example, you start two different alpine containers on the same Docker host and do some tests to understand how they communicate with each other. You need to have Docker installed and running.
+
+```
+#To list available networks
+docker network ls
+```
+Start two alpine containers running ash, which is Alpine’s default shell rather than bash. The -dit flags mean to start the container detached (in the background), interactive (with the ability to type into it), and with a TTY (so you can see the input and output). Since you are starting it detached, you won’t be connected to the container right away. Instead, the container’s ID will be printed. Because you have not specified any --network flags, the containers connect to the default bridge network.
+
+```
+docker run -dit --name alpine1 alpine ash
+
+docker run -dit --name alpine2 alpine ash
+```
+
+Check that both containers are actually started:
+
+```
+docker ps
+```
+Inspect the bridge network to see what containers are connected to it.
+
+```
+docker network inspect bridge
+```
+
+[Output]
+
+```json
+[
+    {
+        "Name": "bridge",
+        "Id": "7e036800a97c8150206d570d6b781c1f9e3e99392533f01dc411eff760a49cdc",
+        "Created": "2020-05-28T14:20:12.071483312Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.17.0.0/16",
+                    "Gateway": "172.17.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "3485a425ed17ede9bec0bdfb9b971508042afc2e6c78ba3751b821e3e3004a98": {
+                "Name": "alpine2",
+                "EndpointID": "497729c65ae1a929d6eee8ce024115e103b114973578b05fa9ed9cd945511c32",
+				"MacAddress": "02:42:ac:11:00:03",
+                "IPv4Address": "172.17.0.3/16",
+                "IPv6Address": ""
+            },
+            "5788f74fdc59f95ced36d908245b923cd940ed5917ae4a464ea42c7a135be21c": {
+                "Name": "alpine1",
+                "EndpointID": "663581b9cd9cc26fcd3d091257d2e4ce4fbb54d3ae05732a48877492f64aa539",
+                "MacAddress": "02:42:ac:11:00:02",
+                "IPv4Address": "172.17.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {
+            "com.docker.network.bridge.default_bridge": "true",
+            "com.docker.network.bridge.enable_icc": "true",
+            "com.docker.network.bridge.enable_ip_masquerade": "true",
+            "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+            "com.docker.network.bridge.name": "docker0",
+            "com.docker.network.driver.mtu": "1500"
+        },
+        "Labels": {}
+    }
+]
+```
 
 
