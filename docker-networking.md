@@ -28,7 +28,7 @@ docker run -itd --network=none ubunut   #No network will assign to container
   <img src="images/bridge-network.jpg">
 
 - ### Host Network
-  or standalone containers, remove network isolation between the container and the Docker host, and use the host’s networking directly. host is only available for swarm services on Docker 17.06 and higher. See [use the host network](https://docs.docker.com/network/host/).   
+  For standalone containers, remove network isolation between the container and the Docker host, and use the host’s networking directly. host is only available for swarm services on Docker 17.06 and higher. See [use the host network](https://docs.docker.com/network/host/).   
 
 
 
