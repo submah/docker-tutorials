@@ -55,5 +55,9 @@ docker run -it alpine sh
 <img src="images/docker-run-with-flag.JPG">
 
 ### Make Containers Persist
+So far, we have run the containers interactively.Sometimes you may want to start a container without interacting with it.
+This can be achieved by using "-d" flag 
+
+```bash
 
 
