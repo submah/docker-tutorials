@@ -161,6 +161,14 @@ In general, Docker containers are ephemeral. By default, any data created inside
 ```bash
 #!/bin/bash
 
+endless(){
+  while true;  do
+  sleep 1
+  echo -e "Script running with endlell loop\n"
+done
+}
+
+
 loop(){
 count=1
 #a=3
@@ -170,7 +178,7 @@ while [ "$count" -le $a ]; do
 echo -e "Running endless loop: $count\n"
 echo $cunt
 sleep 1
-((count++))
+(( count++ ))
 #clear
 done
 }
@@ -179,7 +187,17 @@ done
 ###
 # Main body of script starts here
 ###
-if [ "$1" = loop ];
+
+if [[ "$1" = loop && "$#" == 2 ]];
+then
+        loop
+else
+       endless
+fi
+
+###
+
+if [ "$#" == 2 ];
 then
 shift
 loop $1
