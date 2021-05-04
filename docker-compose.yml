@@ -22,7 +22,7 @@ services:
     network_mode: bridge
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: loginsystem
+      MYSQL_DATABASE: loginsystem1
     ports:
       - "3306:3306"
 volumes:
