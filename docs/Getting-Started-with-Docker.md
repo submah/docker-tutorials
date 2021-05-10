@@ -1,5 +1,5 @@
 
-<img src="images/c4logo.png">
+<img src="../images/c4logo.png">
 
 
 
@@ -20,12 +20,12 @@ The Docker platform is the only container platform to build, secure and manage t
 
 ## Docker Architecture
 
-<img src="images/dockerarchitecture.PNG">
+<img src="../images/dockerarchitecture.PNG">
 
 
 ## Anatomy of a Container
 
-<img src="images/container-anatomy.PNG">
+<img src="../images/container-anatomy.PNG">
 
 #### Namespaces
 Docker makes use of kernel namespaces to provide the isolated workspace called the container. When you run a container, Docker creates a set of namespaces for that container. These namespaces provide a layer of isolation. Each aspect of a container runs in a separate namespace and its access is limited to that namespace.
