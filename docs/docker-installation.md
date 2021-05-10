@@ -1,4 +1,4 @@
-<img src="images/c4logo.png">
+<img src="../images/c4logo.png">
 
 
 ## Install Docker Engine on Ubuntu
