@@ -1,4 +1,4 @@
-<img src="images/c4logo.png">
+<img src="../images/c4logo.png">
 
 In this session we are going to learn few Container Operation commands
 
@@ -15,7 +15,7 @@ docker run alpine:3.4 uptime
 
 ```
 
-<img src="images/docker-run-output.JPG">
+<img src="../images/docker-run-output.JPG">
 
 Try to understand the output
 
@@ -52,7 +52,7 @@ docker run -it alpine sh
 
 [OUTPUT]
 
-<img src="images/docker-run-with-flag.JPG">
+<img src="../images/docker-run-with-flag.JPG">
 
 ### Make Containers Persist
 So far, we have run the containers interactively.Sometimes you may want to start a container without interacting with it.
