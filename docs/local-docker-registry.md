@@ -1,4 +1,4 @@
-<img src="images/c4logo.png">
+<img src="../images/c4logo.png">
 
 #### Let’s see what we are going to go learn in this article:
 

@@ -1,4 +1,4 @@
-<img src="images/c4logo.png">
+<img src="../images/c4logo.png">
 
 ## Docker Images
 In this session we are goin to learn about:
@@ -18,7 +18,7 @@ An image is essentially built from the instructions for a complete and executabl
 
 A Docker image includes the elements needed to run an application as a container -- such as code, config files, environment variables, libraries and run time. If the image is deployed to a Docker environment it can then be executed as a Docker container. The docker run command will create a container from a given image.
 
-<img src="images/docker_image_layer.jpg">
+<img src="../images/docker_image_layer.jpg">
 
 ### Sharing Data in Your Docker Host with Containers
 
@@ -52,7 +52,7 @@ Once deployed, your containers are limited in how they can save and contain data
     - **-v**_____________says what follows is to be the volume.
     - **ubuntu**_______is the image to be used for the container.
 
-    <br><img src="images/creating-host-data-volume.jpg"></br>
+    <br><img src="../images/creating-host-data-volume.jpg"></br>
 
 - ### Testing the Volume
     Let’s test this volume. If you’ve forgotten the ID of the container, issue the **docker ps** command and copy first 4 charatcters from the containder ID
@@ -62,12 +62,12 @@ Once deployed, your containers are limited in how they can save and contain data
     ```
     Once you attach to the container go to **/data** and create a file.  
 
-    <br><img src="images/testing-the-volume.jpg"></br> 
+    <br><img src="../images/testing-the-volume.jpg"></br> 
 
     Now exit from the container and navigate to the directory which you creatd on the docker host i.e. **~/container-data**. 
     Check is ther any file exist or not?
     
-    <br><img src="images/testing-the-volume-1.jpg"></br> 
+    <br><img src="../images/testing-the-volume-1.jpg"></br> 
 
 ### Sharing Data Between Containers
 In general, Docker containers are ephemeral. By default, any data created inside the container is only available from within the container and only while the container is running. Docker volumes can be used to share files between a host system and the Docker container.
@@ -84,7 +84,7 @@ In general, Docker containers are ephemeral. By default, any data created inside
     ```
     docker inspect www --format="{{json .Mounts}}"
     ```
-    <br><img src="images/inspect-volume-mount1.jpg"></br>
+    <br><img src="../images/inspect-volume-mount1.jpg"></br>
     
     Now connect to the www container and create a **index.html** file.
 
@@ -103,7 +103,7 @@ In general, Docker containers are ephemeral. By default, any data created inside
 
     curl $(docker inspect www --format="{{json .NetworkSettings.Networks.bridge.IPAddress}}" | awk -F'"' '$0=$2')
     ```
-    <br><img src="images/inspect-ip-address.jpg"></br>
+    <br><img src="../images/inspect-ip-address.jpg"></br>
 
 
     Now let's create another container **www2** and attach the **share-data** volume to it the same way and see if the changes to the share-data volume (mounted in /usr/local/apache2/htdocs in www and www2 container) from one container is visible to the other container.
@@ -118,11 +118,11 @@ In general, Docker containers are ephemeral. By default, any data created inside
     docker inspect www2 --format="{{json .NetworkSettings.Networks.bridge.IPAddress}}"
 
     ```
-    <br><img src="images/inspect-ip-address-www2.jpg"></br>
+    <br><img src="../images/inspect-ip-address-www2.jpg"></br>
 
     Now navigate to the volume on which both the container are mounted to and update the **index.html** file.
 
-    <br><img src="images/create-index-html-file.jpg"></br>
+    <br><img src="../images/create-index-html-file.jpg"></br>
 
 ### Copying Data to and from Containers
 - ### Copying Data to Container
@@ -135,7 +135,7 @@ In general, Docker containers are ephemeral. By default, any data created inside
 
     docker exec -it www bash -c 'ls -lrth /tmp'
     ```
-    <br><img src="images/copying-data-to-container.png"></br>
+    <br><img src="../images/copying-data-to-container.png"></br>
 
 
 - ### Copying Data from container
@@ -150,7 +150,7 @@ In general, Docker containers are ephemeral. By default, any data created inside
     
     ls
     ```
-    <br><img src="images/copying-data-from-container.png"></br>
+    <br><img src="../images/copying-data-from-container.png"></br>
 
 ### Creatoing Docker Hub Account.
     Refer Demo.
