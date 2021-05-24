@@ -192,19 +192,32 @@ if [[ "$1" = loop && "$#" == 2 ]];
 then
         loop
 else
-       endless
+       #endless
+       if [ "$#" == 0 ];
+        then
+                echo -e "not a valid agrument\n"
+                echo -e "example: loop.sh loop"
+                exit 1
+        fi
+
 fi
+        if [ "$#" == 2 ];
+        then
+                shift
+                loop $1
+        else
+                echo -e "not a valid agrument\n"
+                echo -e "example: loop.sh loop"
+        fi
+
+        if [[ "$1" = loop && "$#" == 1 ]];
+then
+        endless
+        fi
+
 
 ###
 
-if [ "$#" == 2 ];
-then
-shift
-loop $1
-else
-echo -e "not a valid agrument\n"
-echo -e "example: loop.sh loop"
-fi
 ```
 - Create a file i.e Dockerfile and append below code
 
