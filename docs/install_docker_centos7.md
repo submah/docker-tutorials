@@ -33,5 +33,5 @@ yum update -y
 Install the latest version of Docker CE, or go to the next step to install a specific version.
 
 ```
-sudo yum install docker-ce
+sudo yum install docker-ce -y
 ```
