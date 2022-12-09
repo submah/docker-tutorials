@@ -34,4 +34,11 @@ Install the latest version of Docker CE, or go to the next step to install a spe
 
 ```
 sudo yum install docker-ce -y
+
+sudo rm /etc/containerd/config.toml
+
+sudo systemctl start docker
+
+sudo systemctl enable docker
+
 ```
